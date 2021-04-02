@@ -36,7 +36,7 @@ PIECES = [
 
 
 class SudokuTetrisGame(gym.Env):
-    def __init__(self, verbose=True, board_size: Tuple[int, int] = (9, 9)):
+    def __init__(self, verbose=False, board_size: Tuple[int, int] = (9, 9)):
         super().__init__()
         self.verbose = verbose
         self.is_finished = False
@@ -291,7 +291,7 @@ class SudokuTetrisGame(gym.Env):
         return len(self.get_available_actions()) == 0
 
 
-def test_run(n_runs=200, speed=1, autoreset=True, verbose=2):
+def test_run(n_runs=200, speed=1, autoreset=False, verbose=0):
     env = SudokuTetrisGame(verbose=(verbose==2))
     obs = env.reset()
     # tot_rewards = []
