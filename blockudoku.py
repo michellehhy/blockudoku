@@ -36,8 +36,9 @@ PIECES = [
 
 
 class SudokuTetrisGame(gym.Env):
-    def __init__(self, board_size: Tuple[int, int] = (9, 9)):
+    def __init__(self, verbose=True, board_size: Tuple[int, int] = (9, 9)):
         super().__init__()
+        self.verbose = verbose
         self.is_finished = False
         self.n_points = 0
         assert board_size == (9, 9), "Not implemented for any other size yet. "
@@ -123,7 +124,7 @@ class SudokuTetrisGame(gym.Env):
 
         if return_s is True:
             return to_print
-        else:
+        elif self.verbose:
             print(to_print)
 
     def sample_action(self):
@@ -266,13 +267,16 @@ class SudokuTetrisGame(gym.Env):
         clear_box = []
         for i in range(self.board.shape[0]):
             if self.board[i, :].sum() == self.board_size_x:
-                print("REWARD!! CLEARING ROW {}".format(i))
+                if self.verbose:
+                    print("REWARD!! CLEARING ROW {}".format(i))
                 clear_rows.append(("row", i))
             if self.board[:, i].sum() == self.board_size_x:
-                print("REWARD!! CLEARING COL {}".format(i))
+                if self.verbose:
+                    print("REWARD!! CLEARING COL {}".format(i))
                 clear_cols.append(("col", i))
             if self.check_box(i) is True:
-                print("REWARD!! CLEARING BOX {}".format(i))
+                if self.verbose:
+                    print("REWARD!! CLEARING BOX {}".format(i))
                 clear_box.append(("box", i))
         reward = 0
         # Clear these boxes
@@ -288,7 +292,7 @@ class SudokuTetrisGame(gym.Env):
 
 
 def test_run(n_runs=200, speed=1, autoreset=True, verbose=True):
-    env = SudokuTetrisGame()
+    env = SudokuTetrisGame(verbose=verbose)
     obs = env.reset()
     # tot_rewards = []
     # tot_turns = []
