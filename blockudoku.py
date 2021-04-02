@@ -59,6 +59,9 @@ class SudokuTetrisGame(gym.Env):
         self.n_pieces = len(PIECES)
         self.reset()
 
+    def get_parameters(self):
+        return (self.board_size, self.action_space)
+
     def reset(self):
         self.board = self.generate_empty_board((self.board_size_x, self.board_size_y))
         self.current_pieces = self.generate_pieces()
