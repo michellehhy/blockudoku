@@ -291,8 +291,8 @@ class SudokuTetrisGame(gym.Env):
         return len(self.get_available_actions()) == 0
 
 
-def test_run(n_runs=200, speed=1, autoreset=True, verbose=True):
-    env = SudokuTetrisGame(verbose=verbose)
+def test_run(n_runs=200, speed=1, autoreset=True, verbose=2):
+    env = SudokuTetrisGame(verbose=(verbose==2))
     obs = env.reset()
     # tot_rewards = []
     # tot_turns = []
@@ -303,16 +303,17 @@ def test_run(n_runs=200, speed=1, autoreset=True, verbose=True):
         obs, rewards, done, info = env.step(action)
         tot_reward += rewards
         tot_turn += 1
-        if verbose:
+        if verbose == 2:
             print(
                 "Sampled action {} which is {}".format(action, env.interpret_action(action))
             )
             env.render()
         if done is True:
-            print("Done! ")
-            print("Total reward: {}".format(tot_reward))
-            print("Final board: ")
-            env.render()
+            if verbose >= 1:
+                print("Done! ")
+                print("Total reward: {}".format(tot_reward))
+                print("Final board: ")
+                env.render()
             # tot_rewards.append(tot_reward)
             # tot_turns.append(tot_turn)
             if autoreset:
