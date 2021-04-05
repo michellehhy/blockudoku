@@ -294,7 +294,7 @@ class SudokuTetrisGame(gym.Env):
         return len(self.get_available_actions()) == 0
 
 
-def test_run(n_runs=200, speed=1, autoreset=False, verbose=2):
+def test_run(n_runs=200, speed=0, autoreset=False, verbose=0):
     env = SudokuTetrisGame(verbose=(verbose==2))
     obs = env.reset()
     # tot_rewards = []
