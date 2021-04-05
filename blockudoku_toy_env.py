@@ -36,15 +36,15 @@ PIECES = [
 
 
 class SudokuTetrisGame(gym.Env):
-    def __init__(self, verbose=False, board_size: Tuple[int, int] = (9, 9)):
+    def __init__(self, verbose=False, board_size: Tuple[int, int] = (6, 6)):
         super().__init__()
         self.verbose = verbose
         self.is_finished = False
         self.n_points = 0
-        assert board_size == (9, 9), "Not implemented for any other size yet. "
-        assert (
-            np.sqrt(board_size[0]) % 1 == 0
-        ), "Please choose a board size with integer root. "
+        # assert board_size == (9, 9), "Not implemented for any other size yet. "
+        # assert (
+        #     np.sqrt(board_size[0]) % 1 == 0
+        # ), "Please choose a board size with integer root. "
         self.square_size = int(np.sqrt(board_size[0]))
         self.board_size_x = board_size[0]
         self.board_size_y = board_size[1]
