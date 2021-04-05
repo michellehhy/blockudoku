@@ -8,30 +8,30 @@ from time import sleep
 # TODO: Include more pieces here
 PIECES = [
     ((0, 0),),
-    ((0, 0), (0, 1)),  # Two-piece horizontal
-    ((0, 0), (0, 1), (0, 2)),  # 3-piece horizontal
-    ((0, 0), (0, 1), (0, 2), (0, 3)),
-    ((0, 0), (0, 1), (0, 2), (0, 3), (0, 4)),  # 5-piece horizontal
-    ((0, 0), (1, 0)),
-    ((0, 0), (1, 0), (2, 0)),
-    ((0, 0), (1, 0), (2, 0), (3, 0)),  # 3-piece vertical
-    ((0, 0), (1, 0), (2, 0), (3, 0), (4, 0)),
-    ((0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0)),  # 5-piece vertical
-    ((1, 0), (0, 1)),  # 2-diag 1
-    ((0, 0), (1, 1)),  # 2-diag 2
-    ((2, 0), (1, 1), (0, 2)),  # 3-diag no 1
-    ((0, 0), (1, 1), (2, 2)),  # 3-diag no 2
-    ((0, 0), (0, 1), (1, 1), (2, 1)),  # lying reverse L
-    ((0, 0), (1, 0), (2, 0), (0, 1)),  # lying L
-    ((0, 0), (1, 0), (0, 1), (1, 1)),  # square
-    ((0, 0), (1, 0), (0, 1)),  # tri-corner 1
-    ((0, 0), (1, 0), (1, 1)),  # tri-corner 2
-    ((0, 0), (0, 1), (1, 1)),  # tri-corner 3
-    ((1, 0), (0, 1), (1, 1)),  # tri-corner 4
-    ((0, 0), (1, 0), (2, 0), (1, 1), (1, 2)),  # Starship 1
-    ((0, 0), (0, 1), (0, 2), (1, 1), (2, 1)),  # Starship 2
-    ((1, 0), (1, 1), (1, 2), (0, 2), (2, 2)),  # Starship 3
-    ((2, 0), (0, 1), (1, 1), (2, 1), (2, 2)),  # Starship 4
+    ((0, 0), (0, 1)),  # 2-piece horizontal
+    # ((0, 0), (0, 1), (0, 2)),  # 3-piece horizontal
+    # ((0, 0), (0, 1), (0, 2), (0, 3)),
+    # ((0, 0), (0, 1), (0, 2), (0, 3), (0, 4)),  # 5-piece horizontal
+    ((0, 0), (1, 0)), # 2-piece vertical
+    # ((0, 0), (1, 0), (2, 0)), # 3-piece vertical
+    # ((0, 0), (1, 0), (2, 0), (3, 0)),  # 4-piece vertical
+    # ((0, 0), (1, 0), (2, 0), (3, 0), (4, 0)),
+    # ((0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0)),  # 5-piece vertical
+    # ((1, 0), (0, 1)),  # 2-diag 1
+    # ((0, 0), (1, 1)),  # 2-diag 2
+    # ((2, 0), (1, 1), (0, 2)),  # 3-diag no 1
+    # ((0, 0), (1, 1), (2, 2)),  # 3-diag no 2
+    # ((0, 0), (0, 1), (1, 1), (2, 1)),  # lying reverse L
+    # ((0, 0), (1, 0), (2, 0), (0, 1)),  # lying L
+    # ((0, 0), (1, 0), (0, 1), (1, 1)),  # square
+    # ((0, 0), (1, 0), (0, 1)),  # tri-corner 1
+    # ((0, 0), (1, 0), (1, 1)),  # tri-corner 2
+    # ((0, 0), (0, 1), (1, 1)),  # tri-corner 3
+    # ((1, 0), (0, 1), (1, 1)),  # tri-corner 4
+    # ((0, 0), (1, 0), (2, 0), (1, 1), (1, 2)),  # Starship 1
+    # ((0, 0), (0, 1), (0, 2), (1, 1), (2, 1)),  # Starship 2
+    # ((1, 0), (1, 1), (1, 2), (0, 2), (2, 2)),  # Starship 3
+    # ((2, 0), (0, 1), (1, 1), (2, 1), (2, 2)),  # Starship 4
 ]
 
 
@@ -294,7 +294,7 @@ class SudokuTetrisGame(gym.Env):
         return len(self.get_available_actions()) == 0
 
 
-def test_run(n_runs=200, speed=1, autoreset=False, verbose=0):
+def test_run(n_runs=200, speed=1, autoreset=False, verbose=2):
     env = SudokuTetrisGame(verbose=(verbose==2))
     obs = env.reset()
     # tot_rewards = []
