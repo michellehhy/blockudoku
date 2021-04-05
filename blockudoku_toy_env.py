@@ -7,7 +7,7 @@ from time import sleep
 
 # TODO: Include more pieces here
 PIECES = [
-    ((0, 0),),
+    # ((0, 0),),
     ((0, 0), (0, 1)),  # 2-piece horizontal
     # ((0, 0), (0, 1), (0, 2)),  # 3-piece horizontal
     # ((0, 0), (0, 1), (0, 2), (0, 3)),
@@ -24,7 +24,7 @@ PIECES = [
     # ((0, 0), (0, 1), (1, 1), (2, 1)),  # lying reverse L
     # ((0, 0), (1, 0), (2, 0), (0, 1)),  # lying L
     # ((0, 0), (1, 0), (0, 1), (1, 1)),  # square
-    # ((0, 0), (1, 0), (0, 1)),  # tri-corner 1
+    ((0, 0), (1, 0), (0, 1)),  # tri-corner 1
     # ((0, 0), (1, 0), (1, 1)),  # tri-corner 2
     # ((0, 0), (0, 1), (1, 1)),  # tri-corner 3
     # ((1, 0), (0, 1), (1, 1)),  # tri-corner 4
