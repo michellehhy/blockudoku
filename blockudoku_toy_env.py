@@ -187,7 +187,7 @@ class SudokuTetrisGame(gym.Env):
         )
         reward = 0
         i = self.current_pieces.index(PIECES[piece])
-        to_place = self.current_pieces.pop(i)
+        to_place = self.current_pieces[i]
         self.place_piece(fst_coord=fst_coord, piece=to_place)
         reward += len(to_place) + self.check_and_clear()
         if len(self.current_pieces) == 0:
