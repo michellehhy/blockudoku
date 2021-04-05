@@ -235,7 +235,7 @@ class SudokuTetrisGame(gym.Env):
             )
 
     def generate_pieces(self):
-        self.current_pieces = choices(PIECES, k=3)
+        self.current_pieces = PIECES
         return self.current_pieces
 
     def place_piece(self, fst_coord: Tuple[int, int], piece: Tuple[Tuple[int, int]]):
