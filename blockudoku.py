@@ -245,8 +245,8 @@ class SudokuTetrisGame(gym.Env):
 
     def check_box(self, i) -> bool:
         x = int(i % 3)
-        y = int(i - (i % 3))
-        return np.sum(self.board[x : (x + 3), y : (y + 3)]) == self.board_size_x
+        y = int(i//3)
+        return np.sum(self.board[3 * x :3 * (x + 3), 3 * y : 3 * (y + 3)]) == self.board_size_x
 
     def clear(self, to_clear: Tuple[str, int]):
         which_ = to_clear[0]
@@ -257,8 +257,8 @@ class SudokuTetrisGame(gym.Env):
             self.board[:, item_] = False
         elif which_ == "box":
             x = int(item_ % 3)
-            y = int(item_ - (item_ % 3))
-            self.board[x : (x + 3), y : (y + 3)] = False
+            y = int(i//3)
+            self.board[3 * x :3 * (x + 3), 3 * y : 3 * (y + 3)] = False
         else:
             raise Exception("Expection either row, col or box, got {}".format(which_))
 
@@ -294,7 +294,7 @@ class SudokuTetrisGame(gym.Env):
         return len(self.get_available_actions()) == 0
 
 
-def test_run(n_runs=200, speed=1, autoreset=False, verbose=0):
+def test_run(n_runs=200, speed=1, autoreset=False, verbose=2):
     env = SudokuTetrisGame(verbose=(verbose==2))
     obs = env.reset()
     # tot_rewards = []
