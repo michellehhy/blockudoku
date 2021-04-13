@@ -246,7 +246,6 @@ class SudokuTetrisGame(gym.Env):
     def check_box(self, i) -> bool:
         x = int(i % 3)
         y = int(i//3)
-        print(np.sum(self.board[3 * x :3 * (x + 1), 3 * y : 3 * (y + 1)]) == self.board_size_x)
         return np.sum(self.board[3 * x :3 * (x + 1), 3 * y : 3 * (y + 1)]) == self.board_size_x
 
     def clear(self, to_clear: Tuple[str, int]):
@@ -270,7 +269,6 @@ class SudokuTetrisGame(gym.Env):
         clear_cols = []
         clear_box = []
         for i in range(self.board.shape[0]):
-            print(i)
             if self.board[i, :].sum() == self.board_size_x:
                 if self.verbose:
                     print("REWARD!! CLEARING ROW {}".format(i))
