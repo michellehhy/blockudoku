@@ -246,7 +246,8 @@ class SudokuTetrisGame(gym.Env):
     def check_box(self, i) -> bool:
         x = int(i % 3)
         y = int(i//3)
-        return np.sum(self.board[3 * x :3 * (x + 3), 3 * y : 3 * (y + 3)]) == self.board_size_x
+        print(np.sum(self.board[3 * x :3 * (x + 1), 3 * y : 3 * (y + 1)]) == self.board_size_x)
+        return np.sum(self.board[3 * x :3 * (x + 1), 3 * y : 3 * (y + 1)]) == self.board_size_x
 
     def clear(self, to_clear: Tuple[str, int]):
         which_ = to_clear[0]
@@ -257,8 +258,8 @@ class SudokuTetrisGame(gym.Env):
             self.board[:, item_] = False
         elif which_ == "box":
             x = int(item_ % 3)
-            y = int(i//3)
-            self.board[3 * x :3 * (x + 3), 3 * y : 3 * (y + 3)] = False
+            y = int(item_//3)
+            self.board[3 * x :3 * (x + 1), 3 * y : 3 * (y + 1)] = False
         else:
             raise Exception("Expection either row, col or box, got {}".format(which_))
 
@@ -269,6 +270,7 @@ class SudokuTetrisGame(gym.Env):
         clear_cols = []
         clear_box = []
         for i in range(self.board.shape[0]):
+            print(i)
             if self.board[i, :].sum() == self.board_size_x:
                 if self.verbose:
                     print("REWARD!! CLEARING ROW {}".format(i))
@@ -277,7 +279,7 @@ class SudokuTetrisGame(gym.Env):
                 if self.verbose:
                     print("REWARD!! CLEARING COL {}".format(i))
                 clear_cols.append(("col", i))
-            if self.check_box(i) is True:
+            if self.check_box(i) == True:
                 if self.verbose:
                     print("REWARD!! CLEARING BOX {}".format(i))
                 clear_box.append(("box", i))
